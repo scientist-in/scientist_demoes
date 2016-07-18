@@ -4,9 +4,11 @@ import sys
 if os.getcwd() == '/home/keeda/Documents/scientist/demo/cv/scientist_demoes/objectrecognition':
     caffe_root = '/home/keeda/caffe/'
     serverPath = "/home/keeda/Documents/scientist/demo/cv/scientist_demoes/"
+    mypath ='/home/keeda/Documents/scientist/demo/cv/scientist_demoes/media/documents/'
 else:
     caffe_root = '/home/ubuntu/caffe/'  # this file should be run from {caffe_root}/examples (otherwise change this line)
     serverPath = "/home/ubuntu/scientist_demoes/"
+    mypath ='/home/ubuntu/scientist_demoes/media/documents/'
 sys.path.insert(0, caffe_root + 'python')
 import caffe
 import os
