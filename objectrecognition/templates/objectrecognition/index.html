@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>object recognition</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'objectrecognition/style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'objectrecognition/bootstrap-filestyle.js' %}"></script>
+        <script type="text/javascript" src="{% static 'objectrecognition/main.js' %}"></script>
+    </head>
+    <body>
+    <!-- List of uploaded documents -->
+    
+<div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="{% url 'list' fromPostFlag=0 %}">Home</a></li>
+            <li role="presentation"><a href="#">About</a></li>
+            <li role="presentation"><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Object Recognition</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Identify objects and their attributes</h1>
+        <p class="lead">This demo showcases our capabilities in latest object recognition technologies. The subject to be identified can be in natural setup (no white background required), even with some of it partially covered/distorted. Check our demo with a sample upload.</p>
+        {% if documents %}
+        <div class="results">
+            <div class="resultImage"><a href="{{ documents.docfile.url }}">{{ documents.docfile.name }}</a></div>
+            <div class="resultLabels">
+                <h1><span class="label label-primary">{{ mainResult }}</span></h1>
+                <br />
+                {% for one_result in otherResults %}
+                    <h4><span class="label label-info">{{ one_result }}</span></h4>
+                {% endfor %}
+            </div>
+        </div>
+        
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+    <form action="{% url 'list' fromPostFlag=1 %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+            <p>
+                {{ form.docfile.errors }}
+            </p>
+            <p><a class="btn btn-lg btn-success" href="#" role="button">{{ form.docfile }}</a></p>
+            <p><input class = "btn btn-lg btn-warning" type="submit" value="Upload" /></p>
+        </form>
+        
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>On Performance</h4>
+          <p>When you do a single upload the recognition engine kicks off and gears up for prediction. This takes bulk of the time (~95%). Subsequent predictions take only a small incremental time. Contact us know to know this in detail</p>
+
+          <h4>On Accuracy</h4>
+          <p>This model has been trained on a standard set of images which are usually available online for competitions. For specific uses this can be trained and perfected.</p>
+
+          <h4>On Ease of Use</h4>
+          <p>You can get your images tagged in good old upload image urls way, or through a dashboard or integrate it with your existing infrastructure with our apis. Contact us to know more</p>
+        </div>
+
+        
+      </div>
+      <footer class="footer">
+        <p>&copy; 2016 Scientist.</p>
+      </footer>
+
+    </div>
+        <!-- Upload form. Note enctype attribute! -->
+        
+    </body>
+</html> 
