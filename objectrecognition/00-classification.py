@@ -73,7 +73,7 @@ labels = np.loadtxt(labels_file, str, delimiter='\t')
 while(True):
     userInput = raw_input('enter "run" to predict: ')
     if userInput=="run":
-        mypath ='/home/keeda/Documents/scientist/demo/cv/scientist_demoes/media/documents/' 
+        mypath = mypath
         logdir=mypath# path to your log directory
         logfiles = sorted([ f for f in os.listdir(logdir)])
         fileswpath = [mypath+logfile for logfile in logfiles]
