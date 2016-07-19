@@ -20,6 +20,7 @@ import os
 from time import sleep
 def list(request, fromPostFlag=0):
     # Handle file upload
+    
     fromPostFlag = int(fromPostFlag)
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -65,7 +66,13 @@ def list(request, fromPostFlag=0):
         'objectrecognition/index.html',
         {'documents': documents, 'form': form,'mainResult':mainResult,'otherResults':otherResults},
         context_instance=RequestContext(request)
-    )   
+    )
+def handler404(request):
+    print 'came here'
+    response = render_to_response('objectrecognition/error_redirect.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
 # def index(request):
 #     context = {"whatisay":["i","have","nothing"]}
     # return render(request,'objectrecognition/index.html',context)
