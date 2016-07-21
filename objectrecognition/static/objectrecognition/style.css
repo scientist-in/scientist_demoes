@@ -18,6 +18,9 @@ body{
 text{
     height: 1em;
 }
+.navbar-brand{
+    color:#eee;
+}
 
 .node {
   cursor: pointer;

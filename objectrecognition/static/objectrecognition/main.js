@@ -6,7 +6,8 @@ $( document ).ready(function() {
    $(".bulk-upload").height($(".single-upload").height());
    f =$('.resultImage').width();
    $(".result-image").width(f);
-   h = $(".result-image").width()
+   h = $(".result-image").width();
+   //$('.navbar-brand').css('color','#EEE');
 });
 
 
