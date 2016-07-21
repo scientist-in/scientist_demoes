@@ -5,6 +5,6 @@ from django.conf.urls import handler400, handler403, handler404, handler500
 from . import views
 
 handler404 = 'objectrecognition.views.handler404'
-urlpatterns = [
+urlpatterns = [url(r'contact', 'objectrecognition.views.contact', name='contact'),
     url(r'^objectrecognition/(?P<fromPostFlag>[0-9])/$', 'objectrecognition.views.list', name='list')
     ]

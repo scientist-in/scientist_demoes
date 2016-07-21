@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Contact Form Tutorial by Bootstrapious.com</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'objectrecognition/style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'objectrecognition/bootstrap-filestyle.js' %}"></script>
+        <script type="text/javascript" src="{% static 'objectrecognition/validator.js' %}"></script>
+    </head>
+    <body>
+    
+        <div class="container">
+            <div class="header clearfix">
+            <nav>
+              <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="{% url 'list' fromPostFlag=0 %}">Computer Vision</a></li>
+                <li role="presentation"><a href="/objectrecognition/0/">About</a></li>
+                <li role="presentation" class="active"><a href="{% url 'contact' %}">Contact</a></li>
+              </ul>
+            </nav>
+            <h3 class="text-muted">Leave your feedback or requests and we will respond asap.</h3>
+          </div>
+            <div class="jumbotron thanks">
+            <div class="row">
+
+                <div class="col-lg-8 col-lg-offset-2">
+
+                    <h1>Thanks :)</h1>
+
+                    <p class="lead">We will soon correspond with you</p>
+
+                </div><!-- /.8 -->
+
+            </div> <!-- /.row-->
+            </div>
+        </div> <!-- /.container-->
+        <footer>
+            <p> Thanks to <a href="http://bootstrapious.com">Bootstrapious.com</a> for a few website elements </p>
+            <div class="container text-center">
+                <p>&copy; 2016 Scientist.</p>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="validator.js"></script>
+        <script src="contact.js"></script>
+    </body>
+</html>

@@ -8,7 +8,9 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from objectrecognition.models import Document
+from objectrecognition.models import Contact
 from objectrecognition.forms import DocumentForm
+from objectrecognition.forms import ContactForm
 from subprocess import call
 import json
 
@@ -49,7 +51,7 @@ def list(request, fromPostFlag=0):
         sleep(.2)
         with open('result.json', 'r') as infile:
             result = json.load(infile)
-            #ipdb.set_trace()  
+            #ipdb.set_trace() 
             if len(result)>1:
                 mainResult = result[0]
                 otherResults = result[1:5]
@@ -67,12 +69,30 @@ def list(request, fromPostFlag=0):
         {'documents': documents, 'form': form,'mainResult':mainResult,'otherResults':otherResults},
         context_instance=RequestContext(request)
     )
+def contact(request):
+    if request.method == 'POST':
+        print 'reached here'
+        #ipdb.set_trace()
+        form = ContactForm()
+        contact = Contact()
+        contact.firstname,contact.surname,contact.phone, contact.email, contact.message = request.POST['firstname'],request.POST['surname'],request.POST['phone'], request.POST['email'], request.POST['message']
+        contact.save()
+        #ipdb.set_trace()
+        return render_to_response('objectrecognition/contact-thanks.html',{},context_instance=RequestContext(request))
+    else:
+        form = ContactForm()
+        return render_to_response(
+            'objectrecognition/contact.html',
+            {'form': form},
+            context_instance=RequestContext(request))
+            
 def handler404(request):
     print 'came here'
     response = render_to_response('objectrecognition/error_redirect.html', {},
                                   context_instance=RequestContext(request))
     response.status_code = 404
     return response
+
 # def index(request):
 #     context = {"whatisay":["i","have","nothing"]}
     # return render(request,'objectrecognition/index.html',context)
