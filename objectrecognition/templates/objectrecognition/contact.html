@@ -2,7 +2,7 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Contact Form Tutorial by Bootstrapious.com</title>
+        <title>Contact us</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -25,18 +25,16 @@
                 <li role="presentation" class="active"><a href="{% url 'contact' %}">Contact</a></li>
               </ul>
             </nav>
-            <h3 class="text-muted">Leave your feedback or requests and we will respond asap.</h3>
+            <h2 class="text-muted">Contact Us</h2>
           </div>
             <div class="jumbotron">
             <div class="row">
 
                 <div class="col-lg-8 col-lg-offset-2">
 
-                    <h1>Contact Us</a></h1>
+                    <h2>Leave your requests or feedback and we will respond asap.</a></h2>
 
-                    <p class="lead">We are working to get the power of AI to your hands.</p>
-                    <p>If anything can help us do this better, we will get our heads down and start working on it.</p>
-                    <p>Feel free to share your thoughts, we are eagerly awaiting your reactions to our work</p>
+                    
 
 
                     <form id="contact-form" method="post" action="{% url 'contact' %}" role="form">
@@ -81,7 +79,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="form_message">Message *</label>
-                                        <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                                        <textarea id="form_message" name="message" class="form-control" placeholder="Message for us *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -97,6 +95,9 @@
                         </div>
 
                     </form>
+                    <p class="lead">We are working to get the power of AI in your hands.</p>
+                    <p>If anything can help us do this better, we will get our heads down and start working on it.</p>
+                    <p>Feel free to share your thoughts, we are eagerly awaiting your reactions to our work</p>
 
                 </div><!-- /.8 -->
 

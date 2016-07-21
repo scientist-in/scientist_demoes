@@ -1,8 +1,12 @@
+
 #choose_file{
     width: 250px;
 }
 #id_docfile{
     width: inherit;
+}
+#result-image{
+    width: 400px;
 }
 .jumbotron{
     color:#135;
@@ -10,6 +14,9 @@
 }
 body{
     background-color: #feb;
+}
+text{
+    height: 1em;
 }
 
 .node {

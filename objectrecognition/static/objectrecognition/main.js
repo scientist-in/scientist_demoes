@@ -4,6 +4,9 @@ $( document ).ready(function() {
    //$('#id_docfile').css('display','none');
    $(".errorlist").addClass("alert alert-danger");
    $(".bulk-upload").height($(".single-upload").height());
+   f =$('.resultImage').width();
+   $(".result-image").width(f);
+   h = $(".result-image").width()
 });
 
 
@@ -47,7 +50,7 @@ function update(source) {
       .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
   nodeUpdate.select("circle")
-      .attr("r", 6.5)
+      .attr("r", 12.5)
       .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
   nodeUpdate.select("text")

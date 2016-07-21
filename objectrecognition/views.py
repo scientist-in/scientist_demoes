@@ -25,6 +25,7 @@ def list(request, fromPostFlag=0):
     
     fromPostFlag = int(fromPostFlag)
     if request.method == 'POST':
+        
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             newdoc = Document(docfile = request.FILES['docfile'])
@@ -41,10 +42,11 @@ def list(request, fromPostFlag=0):
             return HttpResponseRedirect(url)
     else:
         form = DocumentForm() # A empty, unbound form
+        
 
     # Load documents for the list page
     #ipdb.set_trace()
-    documents = Document.objects.latest('id')
+    
     if (fromPostFlag==1):
         while not os.path.isfile('result.json'):
             pass
@@ -58,11 +60,13 @@ def list(request, fromPostFlag=0):
             else:
                 mainResult =""
                 otherResults =[""]            
-        os.remove(os.path.join('result.json'))    
+        os.remove(os.path.join('result.json'))
+        documents = Document.objects.latest('id')
     else:
         result =[""]
         mainResult =""
         otherResults =[""]
+        documents = False
     # Render list page with the documents and the form
     return render_to_response(
         'objectrecognition/index.html',
