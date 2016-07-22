@@ -1,7 +1,7 @@
 from django import forms
 
 class DocumentForm(forms.Form):
-    docfile = forms.FileField(
+    docfile = forms.ImageField(
         label='Browse image',
         help_text='jpg, png, jpeg only'
     )

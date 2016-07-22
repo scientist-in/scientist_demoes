@@ -25,4 +25,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('objectrecognition.urls')),
+    url(r'^progressbarupload/',include('progressbarupload.urls'))
 ]

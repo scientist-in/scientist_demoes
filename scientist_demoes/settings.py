@@ -36,6 +36,7 @@ STATIC_URL = '/static/'
 
 INSTALLED_APPS = [
     'objectrecognition.apps.ObjectrecognitionConfig',
+    'progressbarupload',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+FILE_UPLOAD_HANDLERS = [
+    "progressbarupload.uploadhandler.ProgressBarUploadHandler",
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler"
+]
+PROGRESSBARUPLOAD_INCLUDE_JQUERY = False
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
