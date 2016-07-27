@@ -16,6 +16,7 @@ from subprocess import call
 import ipdb
 import json
 import re
+import datetime
 
 if os.path.isfile(caffe_root + 'models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel'):
     print 'CaffeNet found.'
@@ -50,7 +51,6 @@ transformer.set_mean('data', mu)            # subtract the dataset-mean value in
 transformer.set_raw_scale('data', 255)      # rescale from [0, 1] to [0, 255]
 transformer.set_channel_swap('data', (2,1,0))  # swap channels from RGB to BGR
 
-
 # classification
 # set the size of the input (we can skip this if we're happy
 #  with the default; we can also change it later, e.g., for different batch sizes)
@@ -73,21 +73,41 @@ labels = np.loadtxt(labels_file, str, delimiter='\t')
 while(True):
     userInput = raw_input('enter "run" to predict: ')
     if userInput=="run":
+        timestart = datetime.datetime.now()
+        print("run started:", timestart)
+               
         mypath = mypath
         logdir=mypath# path to your log directory
         logfiles = sorted([ f for f in os.listdir(logdir)])
         fileswpath = [mypath+logfile for logfile in logfiles]
         fileswpath.sort(key=lambda x: os.path.getmtime(x))
         print "Most recent file = %s" % (fileswpath[-1],)
-        #image = caffe.io.load_image(caffe_root + 'examples/images/test.jpg')
+        print('time taken:',datetime.datetime.now() -timestart)
+                #image = caffe.io.load_image(caffe_root + 'examples/images/test.jpg')
+        print('loading image...')
+        timestart = datetime.datetime.now()
         image = caffe.io.load_image(fileswpath[-1])
+        print('loading time:', datetime.datetime.now() -timestart)
+        
+        
+        print('transforming image...')
+        timestart = datetime.datetime.now()
         transformed_image = transformer.preprocess('data', image)
+        print('tranform time:', datetime.datetime.now() -timestart)
         
         # copy the image data into the memory allocated for the net
+        print('copying image data into data blob')
+        timestart = datetime.datetime.now()
         net.blobs['data'].data[...] = transformed_image
+        print('copy time:', datetime.datetime.now() -timestart)
         
         ### perform classification
+        print('prediction')
+        timestart = datetime.datetime.now()
         output = net.forward()
+        print('prediction time:', datetime.datetime.now() -timestart)
+        timestart = datetime.datetime.now()
+
         
         output_prob = output['prob'][0]  # the output probability vector for the first image in the batch
         
@@ -105,3 +125,4 @@ while(True):
         result = [re.sub(r'^(.*?) ','',i) for i in result]
         with open(serverPath+'result.json', 'w') as outfile:
             json.dump(result, outfile)
+        print('rest of the time', datetime.datetime.now()-timestart)
