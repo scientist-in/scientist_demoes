@@ -13,7 +13,7 @@ from objectrecognition.forms import DocumentForm
 from objectrecognition.forms import ContactForm
 from subprocess import call
 import json
-
+from django.views.decorators.csrf import csrf_exempt
 import os.path
 import ipdb
 
