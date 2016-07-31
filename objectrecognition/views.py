@@ -73,6 +73,7 @@ def list(request, fromPostFlag=0):
         {'documents': documents, 'form': form,'mainResult':mainResult,'otherResults':otherResults},
         context_instance=RequestContext(request)
     )
+@csrf_exempt
 def contact(request):
     if request.method == 'POST':
         print 'reached here'
