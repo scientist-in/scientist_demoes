@@ -80,10 +80,13 @@ def contact(request):
         #ipdb.set_trace()
         form = ContactForm()
         contact = Contact()
-        contact.firstname,contact.surname,contact.phone, contact.email, contact.message = request.POST['firstname'],request.POST['surname'],request.POST['phone'], request.POST['email'], request.POST['message']
+        contact.firstname,contact.surname,contact.phone, contact.email, contact.message = request.POST['name'],'',999, request.POST['email'], request.POST['message']
         contact.save()
         #ipdb.set_trace()
-        return render_to_response('objectrecognition/contact-thanks.html',{},context_instance=RequestContext(request))
+        if request.POST['domain-origin'] == 'website':
+            return HttpResponse('thanks')
+        else:
+            return render_to_response('objectrecognition/contact-thanks.html',{},context_instance=RequestContext(request))
     else:
         form = ContactForm()
         return render_to_response(
