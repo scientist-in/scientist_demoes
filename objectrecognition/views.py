@@ -80,11 +80,11 @@ def contact(request):
         #ipdb.set_trace()
         form = ContactForm()
         contact = Contact()
-        contact.firstname,contact.surname,contact.phone, contact.email, contact.message = request.POST['name'],'',999, request.POST['email'], request.POST['message']
+        contact.firstname,contact.surname,contact.phone, contact.email, contact.message = request.POST['name'],'',9999999999, request.POST['email'], request.POST['message']
         contact.save()
         #ipdb.set_trace()
         if request.POST['domain-origin'] == 'website':
-            return HttpResponse('thanks')
+            return HttpResponseRedirect('http://www.scientist-tech.com/')
         else:
             return render_to_response('objectrecognition/contact-thanks.html',{},context_instance=RequestContext(request))
     else:
